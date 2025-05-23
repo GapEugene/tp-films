@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     genres: [],
     priceFrom: null,
     priceTo: null,
+    orderBy: 'price',
+    order: 'asc',
   };
 
   const countryCheckboxes = document.querySelectorAll('.filter-country');
@@ -126,7 +128,42 @@ document.addEventListener('DOMContentLoaded', () => {
   checkboxFilterHandler(countryCheckboxes, 'countries');
   checkboxFilterHandler(genreCheckboxes, 'genres');
 
-  // 2. ADD TO CART
+  // 2. SORT
+  const sortPriceAsc = document.querySelector('.sort-price-asc');
+  const sortPriceDesc = document.querySelector('.sort-price-desc');
+  const sortDateAsc = document.querySelector('.sort-date-asc');
+  const sortDateDesc = document.querySelector('.sort-date-desc');
+
+  sortPriceAsc.addEventListener('click', (event) => {
+    event.preventDefault();
+    filterState.orderby = 'price';
+    filterState.order = 'asc';
+    getFiltered(filterState);
+  });
+
+  sortPriceDesc.addEventListener('click', (event) => {
+    event.preventDefault();
+    filterState.orderby = 'price';
+    filterState.order = 'desc';
+    getFiltered(filterState);
+  });
+
+  sortDateAsc.addEventListener('click', (event) => {
+    event.preventDefault();
+    filterState.orderby = 'date';
+    filterState.order = 'asc';
+    getFiltered(filterState);
+  });
+
+  sortDateDesc.addEventListener('click', (event) => {
+    event.preventDefault();
+    filterState.orderby = 'date';
+    filterState.order = 'desc';
+    getFiltered(filterState);
+  });
+
+
+  // 3. ADD TO CART
   const cartCounter = document.querySelector('.cart-counter');
   const addToCartTriggers = document.querySelectorAll('.add-to-cart');
 

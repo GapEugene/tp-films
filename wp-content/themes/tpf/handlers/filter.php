@@ -11,6 +11,8 @@ $countries = $data['countries'] ?? [];
 $genres = $data['genres'] ?? [];
 $priceFrom = isset($data['priceFrom']) ? floatval($data['priceFrom']) : null;
 $priceTo = isset($data['priceTo']) ? floatval($data['priceTo']) : null;
+$orderby = $data['orderby'] ?? 'price';
+$order = $data['order'] ?? 'asc';
 
 $tax_query = ['relation' => 'AND'];
 
@@ -59,6 +61,9 @@ if (count($meta_query) > 1) {
 $args = [
   'post_type' => 'films',
   'tax_query' => $tax_query,
+  'meta_key' => $orderby == 'price' ? 'price' : 'date',
+  'orderby' => 'meta_value',
+  'order' => $order,
 ];
 
 if (!empty($meta_query)) {

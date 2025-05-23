@@ -14,6 +14,7 @@ $cart = WC()->cart;
   <p>Films in cart: <span class="cart-counter"><?php echo WC()->cart->get_cart_contents_count(); ?></span></p>
 
   <?php get_template_part( '/template-parts/filter' ); ?>
+  <?php get_template_part( '/template-parts/sort' ); ?>
 
   <div class="row films-listing">
 
